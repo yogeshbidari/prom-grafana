@@ -1042,13 +1042,13 @@ pushgateway:
 alertmanagerFiles:
   alertmanager.yml:
     global: {}
-      # slack_api_url: ''
+      # slack_api_url: https://hooks.slack.com/services/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
 
     receivers:
       - name: default-receiver
         slack_configs:
-        - api_url: https://hooks.slack.com/services/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
-          channel: '#general'
+        - api_url: slack_url
+          channel: '#channel'
           send_resolved: true
           #         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
           text: |-
@@ -1081,7 +1081,7 @@ serverFiles:
             for: 3m
             labels:
               severity: warning
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH Memory USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'Pod {{ $labels.pod }} is using high Memory- More than 70% of requested.'
@@ -1090,7 +1090,7 @@ serverFiles:
             for: 3m
             labels:
               severity: critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH Memory USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'Pod {{ $labels.pod }} is using high Memory- More than 90% of requested.'
@@ -1099,7 +1099,7 @@ serverFiles:
             for: 3m
             labels:
               severity: warning
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH Memory USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'Pod {{ $labels.pod }} is using high Memory- More than 70% of limit.'
@@ -1108,7 +1108,7 @@ serverFiles:
             for: 3m
             labels:
               severity: critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH Memory USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'Pod {{ $labels.pod }} is using high Memory- More than 90% of limit.'
@@ -1117,7 +1117,7 @@ serverFiles:
             for: 3m
             labels:
               severity: critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               summary: 'Pod {{ $labels.pod }} crossed the CPU resource limit.'
               description: 'High CPU usage on pod {{ $labels.pod }}'
@@ -1127,7 +1127,7 @@ serverFiles:
             for: 3m
             labels:
               severity: Critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               summary: 'Pod {{ $labels.pod }} crossed the CPU resource requests.'
               description: 'High CPU usage on pod {{ $labels.pod }}'
@@ -1137,7 +1137,7 @@ serverFiles:
             for: 3m
             labels:
               severity: Critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               summary: 'Pod {{ $labels.pod }} crossed the Memory resource requests.'
               description: 'High Memory usage on pod {{ $labels.pod }}'
@@ -1147,7 +1147,7 @@ serverFiles:
             for: 3m
             labels:
               severity: Critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               summary: 'Pod {{ $labels.pod }} crossed the Memory resource limits.'
               description: 'High memory usage on pod {{ $labels.pod }}'
@@ -1157,7 +1157,7 @@ serverFiles:
             for: 3m
             labels:
               severity: warning
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH CPU USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'pod {{ $labels.pod }} is using high cpu- More than 70% of requests.'
@@ -1166,7 +1166,7 @@ serverFiles:
             for: 3m
             labels:
               severity: critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH CPU USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'pod {{ $labels.pod }} is using high cpu- More than 90% of requests.'
@@ -1175,7 +1175,7 @@ serverFiles:
             for: 3m
             labels:
               severity: warning
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH CPU USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'pod {{ $labels.pod }} is using high cpu - More than 70% of limits.'
@@ -1184,7 +1184,7 @@ serverFiles:
             for: 3m
             labels:
               severity: critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: 'HIGH CPU USAGE WARNING for POD {{ $labels.pod }} on{{ $labels.host }}.'
               summary: 'pod {{ $labels.pod }} is using high cpu - More than 80% of limits.'
@@ -1195,7 +1195,7 @@ serverFiles:
             for: 5m
             labels:
               severity: Critical
-              cluster: standard-cluster-1
+              cluster_name: standard-cluster
             annotations:
               description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
               summary: 'Instance {{ $labels.instance }} down'

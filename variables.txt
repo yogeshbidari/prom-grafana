@@ -1,0 +1,3 @@
+slack_url=slack webhook url for sending alerts
+slack_channel='#channel_name for alerts'
+cluster_name=prometheus_clustername
